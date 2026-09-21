@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Power System Simulations - Kieran Todd</title>
+
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body class="case-page">
+
+    <header class="site-header">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark">KT</span>
+            <span>Engineering Portfolio</span>
+        </a>
+
+        <a class="back-link" href="../index.html#projects">
+            ← All projects
+        </a>
+    </header>
+
+
+    <main class="case-main">
+
+        <!-- Hero -->
+        <div class="case-hero">
+
+            <p class="eyebrow">
+                University project
+            </p>
+
+            <h1>Power System Simulations</h1>
+
+            <p class="case-lead">
+                A collection of a few smaller group (2-4 people) projects that demonstrate some of my understanding and work on power system grid analysis as well as renewable energy integration.
+            </p>
+
+            <div class="case-hero-image placeholder-image blue">
+                <span><img src="../assets/images/powerworld.png"></span>
+            </div>
+
+        </div>
+
+
+        <div class="case-layout">
+
+            <!-- Main Content -->
+            <article class="case-content">
+
+                <!-- Overview -->
+                <section>
+                    <h2>Projects</h2>
+
+                    <h3>Droop Control</h3>
+                    <p>
+                        Investigating droop control for parallel connected inverters. The simulations explored how changes in frequency and voltage could be used to control the sharing of active and reactive power between multiple inverters without requiring direct communication between them. This was first investigated using controllable voltage sources before applying the control method to parallel connected inverters in an islanded microgrid. The results helped demonstrate how droop characteristics influence power sharing and system behaviour as the load changes.
+                    </p>
+
+                    <h3>PV Microgrid</h3>
+                    <p>
+                        A PV system was modelled to investigate its performance under different operating conditions and its impact when integrated into a residential microgrid. The effect of changing irradiance and temperature on the PV array output was investigated, followed by analysis of the DC/AC inverter and LCL filter. The completed system was incorporated into a residential microgrid simulation, then simulated over a 24-hour period to investigate how changing solar generation and residential demand affected the power, voltage and frequency supplied of the grid.
+                    </p>
+
+                    <h3>Power Flow Analysis</h3>
+                    <p>
+                        Power flow was investigated using a small multi bus network, with the system represented using its admittance matrix Ybus. Different numerical methods were used to solve for the unknown bus voltages and phase angles, allowing their convergence and calculation methods to be compared. This project helped develop my understanding of the mathematics behind power flow software and how active and reactive power are related to voltage magnitude and phase angle throughout a network.
+                    </p>
+                </section>
+
+
+
+            </article>
+
+
+            <!-- Sidebar -->
+            <aside class="case-sidebar">
+
+                <div>
+                    <span>Tools</span>
+                    <strong>PowerFactory, PowerWorld, MATLAB Simulink</strong>
+                </div>
+
+                <div>
+                    <span>Topics</span>
+                    <strong>
+                        Load flow, PV integration, voltage control
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Format</span>
+                    <strong>Group project</strong>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        <span>© Kieran Todd</span>
+        <a href="../index.html">Back to portfolio</a>
+    </footer>
+
+</body>
+
+</html>

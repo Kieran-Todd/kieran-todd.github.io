@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Characterisation of a Compressor - Kieran Todd</title>
+
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body class="case-page">
+
+    <header class="site-header">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark">KT</span>
+            <span>Engineering Portfolio</span>
+        </a>
+
+        <a class="back-link" href="../index.html#projects">
+            ← All projects
+        </a>
+    </header>
+
+
+    <main class="case-main">
+
+        <!-- Hero -->
+        <div class="case-hero">
+
+            <h1>Characterisation of a Compressor</h1>
+
+            <p class="case-lead">
+                Determining the isentropic efficiency of a compressor, then running simulations with this value determining a suitable operating condition.
+            </p>
+
+            <div>
+                <span>
+                    <img class="project-image" src="../assets/images/compressor-lab.png">
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- Main project content -->
+        <div class="case-layout">
+
+            <article class="case-content">
+
+                <!-- Problem -->
+                <section>
+                    <h2>Problem</h2>
+
+                    <p>
+                        A compressor needs to be characterised by interpreting real lab results from a refrigeration cycle. The image above is the given diagram of the system and all measurements that are available.
+                    </p>
+                </section>
+
+
+                <!-- Data and Methodology -->
+                <section>
+                    <h2>Data & methodology</h2>
+
+                    <div class="two-images">
+                        <div>
+                            <img width="full" src="../assets/images/comp-results-before.png">
+                        </div>
+
+                        <div>
+                            <img src ="../assets/images/comp-results-after.png">
+                        </div>
+                    </div>
+
+                    <p>
+                        Plotting the raw observations on a T-s diagram results in the states displayed on the left image. The key states to observe are 8 and 9, although we can mathematically calculate the required information from these states, the states displayed do not match with a thermodynamics based understanding.<br><br>
+
+                        Much of this project involved evaluating and determining the correct conditions for states 8 and 9. Rather than simply changing the provided data to produce reasonable results, all assumptions and modifications were clearly stated and justified.
+                        <br><br>
+                        The main justification for reconsidering these states was that they were extremely close to the saturation temperature. As a result, even a small temperature error in either direction could completely change the predicted thermodynamic state. To resolve this, equations were developed using the first law of thermodynamics to determine more appropriate values for these states.
+                        <br><br>
+                        The system initially contained more unknowns than could be solved directly, so further thermodynamic knowledge was used to reduce the number of unknowns. This involved applying appropriate assumptions about the processes, such as identifying sections as isobaric or quasistatic, allowing the remaining state properties to be determined while keeping all assumptions clearly documented.
+
+                    </p>
+                </section>
+
+
+                <!-- Results -->
+                <section>
+                    <h2>Results</h2>
+
+                    <img class="project-image" src="../assets/images/comp-simulation-results.png">
+                    <p>
+                        The image above shows the simulated performance under different high temperatures. This is under the assumption of -4 °C, low temperatures. <br><br>
+                    </p>
+
+                    <p>
+                        The compressor was found to have an average isentropic efficiency of 56.7% across the different test cases, the isentropic efficiency was found to be highly sensitive to changes in the low temperature, with a value of -4 °C recommended for improved performance. The high temperature was also recommended to remain below 25 °C to maintain sufficient heat transfer through the condenser. A longer condenser was suggested to ensure the refrigerant fully condenses before reaching the throttle valve.
+                    </p>
+                </section>
+
+
+
+            </article>
+
+
+            <!-- Sidebar -->
+            <aside class="case-sidebar">
+
+                <div>
+                    <span>Tools</span>
+                    <strong>TESTA Thermodynamics</strong>
+                </div>
+
+
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        <span>© Kieran Todd</span>
+        <a href="../index.html">Back to portfolio</a>
+    </footer>
+
+</body>
+
+</html>

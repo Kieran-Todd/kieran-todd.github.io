@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>String Art Robot - Kieran Todd</title>
+
+    <link rel="stylesheet" href="../assets/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body class="case-page">
+
+    <header class="site-header">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark">KT</span>
+            <span>Engineering Portfolio</span>
+        </a>
+
+        <a class="back-link" href="../index.html#projects">
+            ← All projects
+        </a>
+    </header>
+
+
+    <main class="case-main">
+
+        <!-- Hero -->
+        <div class="case-hero">
+
+            <p class="eyebrow">
+                Personal project · In development
+            </p>
+
+            <h1>Automated String Art Robot</h1>
+
+            <p class="case-lead">
+                A 600 mm automated machine designed to route string between
+                pins with consistent positioning and tension.
+            </p>
+
+            <div>
+                <span><img class="project-image" src="../assets/images/string-robot.png"></span>
+            </div>
+
+        </div>
+
+
+        <div class="case-layout">
+
+            <!-- Main Content -->
+            <article class="case-content">
+
+                <!-- Project Overview -->
+                <section>
+                    <h2>Project overview</h2>
+
+                    <p>
+                        <!-- REPLACE: Explain what inspired the project and its goal. -->
+                        I am designing and manufacturing a machine that converts
+                        a digital image into physical string art. The design
+                        combines a rotating circular platform with a controlled
+                        string-positioning mechanism.
+                    </p>
+                </section>
+
+
+                <!-- Design Requirements -->
+                <section>
+                    <h2>Design requirements</h2>
+
+                    <ul class="requirements">
+                        <li>
+                            <strong>600 mm</strong>
+                            <span>Rotating platform diameter</span>
+                        </li>
+
+                        <li>
+                            <strong>~1 sec</strong>
+                            <span>Target movement per pin</span>
+                        </li>
+
+                        <li>
+                            <strong>Reliable</strong>
+                            <span>Thousands of repeated movements</span>
+                        </li>
+
+                        <li>
+                            <strong>Controlled</strong>
+                            <span>Consistent string tension</span>
+                        </li>
+                    </ul>
+                </section>
+
+
+                <!-- String Generation -->
+                <section>
+                    <h2>String Art Generator</h2>
+
+                    <div class="two-images">
+                        <div>
+                            <img class="project-image" src="../assets/images/cat-unaltered.jpg">
+                        </div>
+
+                        <div>
+                            <img class="project-image" src="../assets/images/string-cat.png">
+                        </div>
+                    </div>
+
+                    <p>
+                        Example of an input image and output image.
+                    </p>
+                </section>
+
+
+                <!-- Engineering Analysis -->
+                <section>
+                    <h2>Engineering analysis</h2>
+
+                    <h3>Motor selection</h3>
+
+                    <p>
+                        There are many different available types of motors. There were 3 main candidates 
+                        for this project; being stepper, dc or servo. A stepper motor was chosen due to the
+                        balance between discrete step distances and balancing cost. The steps allow for more 
+                        predictable movement where errors can not build over time unless a step is missed. <br><br>
+
+                        From this point a estimate of the required torque was calculated from the desired angular acceleration and estimated moment of inertia.
+                    </p>
+
+                    <h3>Control system</h3>
+
+                    <div class="process">
+                        <span>Input data</span>
+                        <b>→</b>
+                        <span>Generate Pin Order</span>
+                        <b>→</b>
+                        <span>Signals</span>
+                        <b>→</b>
+                        <span>DM556</span>
+                        <b>→</b>
+                        <span>NEMA 24</span>
+                    </div>
+
+                    <p>
+                        The code can currently take in any image, it then rescales this to
+                        fit within the board. It generates a list of pins that the string
+                        will need to go through using a modified least squares error solver.
+                        The information is then sent to the main NEMA 24 stepper motor, using
+                        a DM556 microstep driver to provide precise movements.<br><br>
+                        Two additional motors are used to move the string nose and reset 
+                        the tensioning mechanism respectively.
+                    </p>
+
+                    <h3>Optimisation</h3>
+
+                    <p>
+                        I originally created the code for the string generator after completing
+                        a unit on optimisation and numerical methods for engineers. I was inspired
+                        to develop the algorithm using only the methods I had learnt throughout
+                        the unit. This worked well, and I was able to produce results I was happy
+                        with. However, the program had a considerable runtime of around 10 minutes.
+                        I initially reduced the number of pins being sampled at each step, which 
+                        improved the runtime, but not to the extent I wanted. <br><br>
+
+                        One of the main limitations was the way I was calculating the error. For 
+                        every possible line, I calculated a difference matrix between the target 
+                        image and the current string pattern and summed all of its entries. Repeating 
+                        this calculation hundreds of times for every new line was computationally 
+                        expensive. Through further research, I realised that each new line of string 
+                        only changes a small number of entries in the matrix. Rather than recalculating 
+                        the error across the entire image, I could calculate the change in error only 
+                        for the affected entries and add this to the previous value. This significantly 
+                        reduced the number of FLOPs required. <br><br>
+
+                        I also researched other implementations of string art algorithms and found an 
+                        approach that used a very similar method to the one I had developed. After 
+                        reading through the accompanying report, I implemented and modified one of 
+                        its suggestions. Instead of only considering lines that immediately reduced 
+                        the error, the algorithm could accept a line that temporarily increased it 
+                        if it created a path that could reduce the error further later on. This 
+                        allowed the generated string patterns to capture finer details that could 
+                        otherwise be missed.
+
+                        
+
+                    </p>
+                </section>
+
+
+                <!-- Current Progress -->
+                <section>
+                    <h2>Current progress</h2>
+
+                    <ul class="progress-list">
+                        <li class="done">
+                            Mechanical system designed in SolidWorks
+                        </li>
+
+                        <li class="done">
+                            Motor and drivetrain sized
+                        </li>
+
+                        <li class="done">
+                            Initial control software developed
+                        </li>
+
+                        <li>
+                            Manufacturing and assembly (Waiting on Delivery)
+                        </li>
+
+                        <li>
+                            System testing and validation
+                        </li>
+                    </ul>
+                </section>
+
+
+                <!-- Next Steps -->
+                <section>
+                    <h2>Next steps & reflection</h2>
+
+                    <p>
+                        The next steps in this project involve testing the current design to assess its performance and reliability. Torque calculations were completed during the design process to estimate the requirements of the rotating mechanism and select a suitable motor. However, physical testing will determine whether additional torque is required under real operating conditions. If necessary, the design allows for the addition of a gear or belt drive to increase the available torque. This was initially avoided to maintain tighter tolerances and minimise backlash, as the mechanism must remain accurate and reliable over thousands of repeated movements.
+
+                    </p>
+                </section>
+
+            </article>
+
+
+            <!-- Sidebar -->
+            <aside class="case-sidebar">
+
+                <div>
+                    <span>My role</span>
+                    <strong>Independent designer & builder</strong>
+                </div>
+
+                <div>
+                    <span>Tools</span>
+                    <strong>SolidWorks, Arduino, Python, C++</strong>
+                </div>
+
+                <div>
+                    <span>Focus</span>
+                    <strong>Mechatronics, motor control</strong>
+                </div>
+
+                <div>
+                    <span>Status</span>
+                    <strong>In development</strong>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        <span>© Kieran Todd</span>
+        <a href="../index.html">Back to portfolio</a>
+    </footer>
+
+</body>
+
+</html>
